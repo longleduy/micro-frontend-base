@@ -3,16 +3,19 @@ const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const packageJson = require('../package.json');
 const commonConfig = require('./webpack.common');
+const path = require('path');
 
+const name = 'auth';
 const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/auth/latest/',
+    publicPath: `/${name}/latest/`,
+    path: path.join(process.cwd(), `../../build/${name}/latest`),
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'auth',
+      name,
       filename: 'remoteEntry.js',
       exposes: {
         './AuthApp': './src/bootstrap',
