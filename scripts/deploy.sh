@@ -6,6 +6,7 @@ BRANCH=develop
 PACKAGE=container
 STATIC_PATH=a
 
+set -e
 while getopts "e:b:p:s:" opt
 do
    case "$opt" in
@@ -19,28 +20,43 @@ done
 #cp .env.$ENV .env
 #export $(egrep -v '^#' .env | xargs)
 #
-echo "---PROCESS: GIT PULLING---"
+echo "___PROCESS: GIT PULLING...___"
 git fetch --all && git checkout $BRANCH && git reset --hard origin/$BRANCH
 if [ $? -eq 0 ]; then
-    echo OK
+    echo "___SUCCESS: GIT PULLING___"
 else
-    echo FAIL
+    echo "___ERROR: GIT PULLING___"
+    exit 1
+fi
+echo "\n\n"
+
+echo "___PROCESS: BUILD PACKAGE $PACKAGE DELETING...___"
+rm -rf "build/$PACKAGE"
+if [ $? -eq 0 ]; then
+    echo "___SUCCESS: BUILD PACKAGE $PACKAGE DELETING___"
+else
+    echo "___ERROR: BUILD PACKAGE $PACKAGE DELETING___"
+    exit 1
+fi
+echo "\n\n"
+
+echo "___PROCESS: BUILD PACKAGE $PACKAGE BUILDING...___"
+yarn workspace $PACKAGE build
+if [ $? -eq 0 ]; then
+    echo "___SUCCESS: BUILD PACKAGE $PACKAGE BUILDING___"
+else
+    echo "___ERROR: BUILD PACKAGE $PACKAGE BUILDING___"
+    exit 1
+fi
+echo "\n\n"
+
+#
+echo "___PROCESS: BUILD PACKAGE $PACKAGE MOVING TO $STATIC_PATH...___"
+cp -r "build/$PACKAGE" $STATIC_PATH
+if [ $? -eq 0 ]; then
+    echo "___DONE___"
+else
+    echo "___ERROR: BUILD PACKAGE $PACKAGE MOVING TO $STATIC_PATH___"
+    exit 1
 fi
 
-echo "---PROCESS: BUILD PACKAGE $PACKAGE DELETING...---"
-rm -rf "build/$PACKAGE"
-
-#echo "---PROCESS: BUILD PACKAGE $PACKAGE BUILDING...---"
-#yarn workspace $PACKAGE build
-#
-#echo "---PROCESS: BUILD PACKAGE $PACKAGE MOVING TO $STATIC_PATH...---"
-#cp -r "build/$PACKAGE" $STATIC_PATH
-
-## deploy
-#if [ $? -eq 0 ]; then
-#  docker tag "$DOCKER_IMG:latest" "$AWS_FAMILY/$DOCKER_IMG:latest"
-#  docker push "$AWS_FAMILY/$DOCKER_IMG:latest"
-#  aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment --query 'service.deployments[0]'
-#else
-#  echo "ERR::Build failed!"
-#fi
