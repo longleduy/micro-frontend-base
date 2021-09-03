@@ -40,6 +40,16 @@ else
 fi
 echo "\n\n"
 
+echo "___PROCESS: YARN INSTALL__"
+yarn install
+if [ $? -eq 0 ]; then
+    echo "___SUCCESS: YARN INSTALL___"
+else
+    echo "___ERROR: YARN INSTALL___"
+    exit 1
+fi
+echo "\n\n"
+
 echo "___PROCESS: BUILD PACKAGE $PACKAGE BUILDING...___"
 yarn workspace $PACKAGE build
 if [ $? -eq 0 ]; then
