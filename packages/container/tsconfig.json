@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "jsx": "react"
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "./node_modules", "**/__tests__/*", "**/__e2e__/*"]
+}
