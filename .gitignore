@@ -21,7 +21,8 @@ coverage
 dist
 lib
 .build
-
+build
+.idea/dictionaries/
 # CACHE
 .yarn-offline-mirror
 .yarn-cache

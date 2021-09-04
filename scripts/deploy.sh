@@ -20,53 +20,54 @@ done
 #cp .env.$ENV .env
 #export $(egrep -v '^#' .env | xargs)
 #
-echo "___PROCESS: GIT PULLING...___"
-git fetch --all && git checkout $BRANCH && git reset --hard origin/$BRANCH
+echo "STEP 1: GIT PULL BRANCH: $BRANCH"
+git restore --staged . && git stash && git clean -fd
+git fetch origin $BRANCH && git checkout $BRANCH && git reset --hard origin/$BRANCH
 if [ $? -eq 0 ]; then
-    echo "___SUCCESS: GIT PULLING___"
+    echo "STEP 1: DONE"
 else
-    echo "___ERROR: GIT PULLING___"
+    echo "STEP 1: ERROR"
     exit 1
 fi
 echo "\n\n"
 
-echo "___PROCESS: BUILD PACKAGE $PACKAGE DELETING...___"
+echo "STEP 2: REMOVE OLD BUILD FOLDER OF: $PACKAGE"
 rm -rf "build/$PACKAGE"
 if [ $? -eq 0 ]; then
-    echo "___SUCCESS: BUILD PACKAGE $PACKAGE DELETING___"
+    echo "STEP 2: DONE"
 else
-    echo "___ERROR: BUILD PACKAGE $PACKAGE DELETING___"
+    echo "STEP 2: ERROR"
     exit 1
 fi
 echo "\n\n"
 
-echo "___PROCESS: YARN INSTALL__"
+echo "STEP 3: YARN INSTALL PACKAGE"
 yarn install
 if [ $? -eq 0 ]; then
-    echo "___SUCCESS: YARN INSTALL___"
+    echo "STEP 3: DONE"
 else
-    echo "___ERROR: YARN INSTALL___"
+    echo "STEP 3: ERROR"
     exit 1
 fi
 echo "\n\n"
 
-echo "___PROCESS: BUILD PACKAGE $PACKAGE BUILDING...___"
+echo "STEP 4: BUILD PACKAGE: $PACKAGE"
 yarn workspace $PACKAGE build
 if [ $? -eq 0 ]; then
-    echo "___SUCCESS: BUILD PACKAGE $PACKAGE BUILDING___"
+    echo "STEP 4: DONE"
 else
-    echo "___ERROR: BUILD PACKAGE $PACKAGE BUILDING___"
+    echo "STEP 4: ERROR"
     exit 1
 fi
 echo "\n\n"
 
 #
-echo "___PROCESS: BUILD PACKAGE $PACKAGE MOVING TO $STATIC_PATH...___"
+echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $STATIC_PATH"
 cp -r "build/$PACKAGE" $STATIC_PATH
 if [ $? -eq 0 ]; then
-    echo "___DONE___"
+    echo "STEP 5: DONE"
 else
-    echo "___ERROR: BUILD PACKAGE $PACKAGE MOVING TO $STATIC_PATH___"
+    echo "STEP 5: ERROR"
     exit 1
 fi
 
