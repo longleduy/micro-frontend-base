@@ -4,6 +4,8 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
 const domain = process.env.PRODUCTION_DOMAIN;
 const name = 'container';
@@ -16,6 +18,7 @@ const prodConfig = {
     path: outPath,
   },
   plugins: [
+    new Dotenv({}),
     new ModuleFederationPlugin({
       name,
       remotes: {

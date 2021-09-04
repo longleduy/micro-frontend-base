@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires,import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const Dotenv = require('dotenv-webpack');
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
 
@@ -14,6 +15,7 @@ const devConfig = {
     historyApiFallback: true,
   },
   plugins: [
+    new Dotenv({}),
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {

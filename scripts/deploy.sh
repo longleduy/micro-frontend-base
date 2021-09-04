@@ -16,10 +16,12 @@ do
       s ) STATIC_PATH="$OPTARG" ;;
    esac
 done
+echo "STEP 0: CREATE PROD .ENV"
+set +e
+cp "packages/$PACKAGE/.env.$ENV" "packages/$PACKAGE/.env"
+set -e
+cho "STEP 0: DONE"
 
-#cp .env.$ENV .env
-#export $(egrep -v '^#' .env | xargs)
-#
 echo "STEP 1: GIT PULL BRANCH: $BRANCH"
 git restore --staged . && git stash && git clean -fd
 git fetch origin $BRANCH && git checkout $BRANCH && git reset --hard origin/$BRANCH
@@ -63,7 +65,8 @@ echo "\n\n"
 
 #
 echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $STATIC_PATH"
-cp -r "build/$PACKAGE" $STATIC_PATH
+rm -rf "$STATIC_PATH/$PACKAGE"
+cp -r "build/$PACKAGE" "$STATIC_PATH"
 if [ "$PACKAGE" = "container" ]; then
   mv -f "$STATIC_PATH/$PACKAGE/latest/index.html" $STATIC_PATH
 fi
