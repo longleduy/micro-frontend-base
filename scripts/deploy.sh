@@ -44,7 +44,6 @@ fi
 echo "\n\n"
 
 echo "STEP 3: YARN INSTALL PACKAGE"
-npm install -g yarn
 yarn install
 if [ $? -eq 0 ]; then
     echo "STEP 3: DONE"
