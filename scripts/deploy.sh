@@ -20,7 +20,7 @@ echo "STEP 0: CREATE PROD .ENV"
 set +e
 cp "packages/$PACKAGE/.env.$ENV" "packages/$PACKAGE/.env"
 set -e
-cho "STEP 0: DONE"
+echo "STEP 0: DONE"
 
 echo "STEP 1: GIT PULL BRANCH: $BRANCH"
 git restore --staged . && git stash && git clean -fd
