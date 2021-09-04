@@ -64,6 +64,9 @@ echo "\n\n"
 #
 echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $STATIC_PATH"
 cp -r "build/$PACKAGE" $STATIC_PATH
+if [ "$PACKAGE" = "container" ]; then
+  mv -f "$STATIC_PATH/$PACKAGE/latest/index.html" $STATIC_PATH
+fi
 if [ $? -eq 0 ]; then
     echo "STEP 5: DONE"
 else
