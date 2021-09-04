@@ -16,7 +16,7 @@ coverage
 # Environment variables
 .env
 .env-*
-
+packages/container/.env.dev
 # Build directory
 dist
 lib
