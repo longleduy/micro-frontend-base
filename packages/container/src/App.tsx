@@ -19,7 +19,7 @@ const generateClassName = createGenerateClassName({
 const history = createBrowserHistory();
 
 export default () => {
-  console.log(process.env.PRODUCTION_DOMAIN)
+  console.log(process.env.PRODUCTION_DOMAIN);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
