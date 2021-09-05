@@ -1,1 +1,10 @@
-module.exports = { extends: ['@commitlint/config-conventional', '@commitlint/config-lerna-scopes'] };
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const typeEnum = require('./.cz-config');
+module.exports = {
+  extends: ['@commitlint/config-conventional', '@commitlint/config-lerna-scopes'],
+  rules: {
+    'type-enum': [2, 'always', typeEnum.types.map((i) => i.value)],
+    'scope-enum': [2, 'always', typeEnum.scopes.map((i) => i.name)],
+    'scope-empty': [2, 'never'],
+  },
+};
