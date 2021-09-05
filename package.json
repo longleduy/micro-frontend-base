@@ -10,6 +10,11 @@
     "lint": "eslint --quiet --ext .jsx,.js,.tsx,.ts ./packages/*/src",
     "lint:fix": "eslint --quiet --fix --ext .jsx,.js,.tsx,.ts ./packages/*/src"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
