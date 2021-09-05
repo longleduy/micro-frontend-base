@@ -112,12 +112,7 @@
       <Panel header="Contact Us">
         <div class="p-grid">
           <div class="p-col-12">
-            <Dropdown
-              v-model="dropdownCity"
-              :options="dropdownCities"
-              optionLabel="name"
-              placeholder="Select a City"
-            />
+            <Dropdown v-model="dropdownCity" :options="dropdownCities" optionLabel="name" placeholder="Select a City" />
           </div>
           <div class="p-col-12">
             <InputText type="text" placeholder="Name" />
@@ -229,16 +224,8 @@
           <Column>
             <template #header> View </template>
             <template #body>
-              <Button
-                icon="pi pi-search"
-                type="button"
-                class="p-button-success p-mr-2 p-mb-1"
-              ></Button>
-              <Button
-                icon="pi pi-times"
-                type="button"
-                class="p-button-danger p-mb-1"
-              ></Button>
+              <Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
+              <Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
             </template>
           </Column>
         </DataTable>
@@ -304,15 +291,7 @@ export default {
       products: null,
       selectedProducts: null,
       lineData: {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
             label: 'First Dataset',
@@ -564,8 +543,8 @@ p {
 /* Footer */
 $footerBgColor: #ffffff;
 .dashboard {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
   background-color: #edf0f5;
   .summary {
     position: relative;

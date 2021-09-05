@@ -22,7 +22,7 @@
     "simple-import-sort"
   ],
   "rules": {
-    "no-console": "warn",
+    "no-console": "error",
     "no-use-before-define": "off",
     "react/display-name": "off",
     "prettier/prettier": [
