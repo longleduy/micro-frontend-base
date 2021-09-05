@@ -46,3 +46,5 @@ tsconfig.tsbuildinfo
 !**/.vscode/extensions.json
 
 .eslintcache
+test.js
+test.json

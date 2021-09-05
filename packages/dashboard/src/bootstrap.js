@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+
 import Dashboard from './components/Dashboard.vue';
 
 // Mount function to start up the app

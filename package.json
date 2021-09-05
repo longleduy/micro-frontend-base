@@ -5,16 +5,28 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "husky install",
     "start": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
-    "lint": "eslint --quiet --ext .jsx,.js,.tsx,.ts ./packages/*/src",
-    "lint:fix": "eslint --quiet --fix --ext .jsx,.js,.tsx,.ts ./packages/*/src"
+    "lint": "eslint --quiet --ext .jsx,.js,.tsx,.ts ./packages/**/*.{js,ts,jsx,tsx}",
+    "lint:fix": "eslint --quiet --fix --ext .jsx,.js,.tsx,.ts ./packages/**/*.{js,ts,jsx,tsx}",
+    "validate_barch": "sh scripts/validate_branch_name.sh",
+    "format": "prettier --write ./packages"
+  },
+  "lint-staged": {
+    "packages/**/*.{js,ts,jsx,tsx}": [
+      "eslint --quiet --fix",
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-lerna-scopes": "^13.1.0",
     "@types/history": "^4.7.9",
     "@types/jest": "^27.0.1",
     "@types/react-dom": "^17.0.9",
@@ -45,9 +57,12 @@
     "eslint-plugin-standard": "^5.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "^7.0.2",
     "jest": "^27.1.0",
     "lerna": "^4.0.0",
+    "lint-staged": "^11.1.2",
     "nodemon": "^2.0.12",
+    "npm": "^7.22.0",
     "prettier": "^2.3.2",
     "sass": "^1.38.2",
     "sass-loader": "^12.1.0",
