@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "husky install",
     "start": "webpack serve --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
     "lint": "eslint --quiet --ext .jsx,.js,.tsx,.ts ./packages/*/src",
