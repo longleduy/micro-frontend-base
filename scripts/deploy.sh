@@ -5,15 +5,17 @@ ENV=dev
 BRANCH=develop
 PACKAGE=container
 STATIC_PATH=a
+FABBI_PORTAL_STATIC_PATH_AUTH=b
 
 set -e
-while getopts "e:b:p:s:" opt
+while getopts "e:b:p:s:s2:" opt
 do
    case "$opt" in
       e ) ENV="$OPTARG" ;;
       b ) BRANCH="$OPTARG" ;;
       p ) PACKAGE="$OPTARG" ;;
       s ) STATIC_PATH="$OPTARG" ;;
+      s2 ) FABBI_PORTAL_STATIC_PATH_AUTH="$OPTARG" ;;
    esac
 done
 echo "STEP 0: CREATE PROD .ENV"
@@ -63,13 +65,19 @@ else
 fi
 echo "\n\n"
 
-#
-echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $STATIC_PATH"
-rm -rf "$STATIC_PATH/$PACKAGE"
-cp -r "build/$PACKAGE" "$STATIC_PATH"
-if [ "$PACKAGE" = "container" ]; then
-  mv -f "$STATIC_PATH/$PACKAGE/latest/index.html" $STATIC_PATH
+if [ "$PACKAGE" = "auth" ]; then
+  echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $FABBI_PORTAL_STATIC_PATH_AUTH"
+  rm -rf "$FABBI_PORTAL_STATIC_PATH_AUTH/$PACKAGE"
+  cp -r "build/$PACKAGE" "$FABBI_PORTAL_STATIC_PATH_AUTH"
+else
+  echo "STEP 5: COPPY BUILD PACKAGE $PACKAGE TO $STATIC_PATH"
+  rm -rf "$STATIC_PATH/$PACKAGE"
+  cp -r "build/$PACKAGE" "$STATIC_PATH"
+  if [ "$PACKAGE" = "container" ]; then
+    mv -f "$STATIC_PATH/$PACKAGE/latest/index.html" $STATIC_PATH
+  fi
 fi
+#
 if [ $? -eq 0 ]; then
     echo "STEP 5: DONE"
 else
