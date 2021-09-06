@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
 
-valid_branch_regex='^((feature|feedback|hotfix|revert|reset|force|refactor|fix)\((auth|container|marketing|dashboard)\)/[a-zA-Z0-9\-]+)$'
+valid_branch_regex='^((feature|feedback|hotfix|revert|reset|force|refactor|fix)\((auth|container|about|dashboard)\)/[a-zA-Z0-9\-]+)$'
 
 message="Branch không đúng rule: VD: fix(auth)/branch_name"
 

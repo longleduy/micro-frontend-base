@@ -7,6 +7,7 @@
   "scripts": {
     "postinstall": "husky install",
     "start": "webpack serve --config config/webpack.dev.js",
+    "start:all": "lerna run start --parallel",
     "build": "webpack --config config/webpack.prod.js",
     "lint": "eslint --quiet --ext .jsx,.js,.tsx,.ts ./packages/**/*.{js,ts,jsx,tsx}",
     "lint:fix": "eslint --quiet --fix --ext .jsx,.js,.tsx,.ts ./packages/**/*.{js,ts,jsx,tsx}",

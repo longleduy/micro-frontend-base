@@ -8,7 +8,7 @@ import { createGenerateClassName, StylesProvider } from '@material-ui/core/style
 import Header from './components/Header';
 import Progress from './components/Progress';
 
-const MarketingLazy = lazy(() => import('./components/MarketingApp'));
+const AboutLazy = lazy(() => import('./components/AboutApp'));
 const AuthLazy = lazy(() => import('./components/AuthApp'));
 const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 
@@ -41,7 +41,7 @@ export default () => {
                 {!isSignedIn && <Redirect to="/" />}
                 <DashboardLazy />
               </Route>
-              <Route path="/" component={MarketingLazy} />
+              <Route path="/" component={AboutLazy} />
             </Switch>
           </Suspense>
         </div>
