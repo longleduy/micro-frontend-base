@@ -8,14 +8,14 @@ STATIC_PATH=a
 FABBI_PORTAL_STATIC_PATH_AUTH=b
 
 set -e
-while getopts "e:b:p:s:s2:" opt
+while getopts "e:b:p:s:a:" opt
 do
    case "$opt" in
       e ) ENV="$OPTARG" ;;
       b ) BRANCH="$OPTARG" ;;
       p ) PACKAGE="$OPTARG" ;;
       s ) STATIC_PATH="$OPTARG" ;;
-      s2 ) FABBI_PORTAL_STATIC_PATH_AUTH="$OPTARG" ;;
+      a ) FABBI_PORTAL_STATIC_PATH_AUTH="$OPTARG" ;;
    esac
 done
 echo "STEP 0: CREATE PROD .ENV"
