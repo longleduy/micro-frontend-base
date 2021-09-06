@@ -1,9 +1,14 @@
 server {
-  listen       80;
-  server_name  _;
-  root /usr/fabbi/fabbi-portal-mfe-build;
+  listen       8081;
+  server_name  localhost;
+  root /System/Volumes/Data/SourceCode/project-base/micro-frontend/build2;
   index index.html;
   location / {
   try_files $uri /index.html =404;
+}
+
+error_page   500 502 503 504  /50x.html;
+location = /50x.html {
+root   html;
 }
 }
