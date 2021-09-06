@@ -17,12 +17,29 @@ const prodConfig = {
     publicPath: `/${name}/latest/`,
     path: outPath,
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: `/${name}/latest/public/images`,
+              outputPath: '/public/images',
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new Dotenv({}),
     new ModuleFederationPlugin({
       name,
       remotes: {
-        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
+        about: `about@${domain}/about/latest/remoteEntry.js`,
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },

@@ -14,12 +14,28 @@ const devConfig = {
     port: 8080,
     historyApiFallback: true,
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: 'http://localhost:8080/public/images',
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new Dotenv({}),
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketing: 'marketing@http://localhost:8081/remoteEntry.js',
+        about: 'about@http://localhost:8081/remoteEntry.js',
         auth: 'auth@http://localhost:8082/remoteEntry.js',
         dashboard: 'dashboard@http://localhost:8083/remoteEntry.js',
       },

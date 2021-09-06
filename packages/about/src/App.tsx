@@ -5,11 +5,10 @@ import { Route, Router, Switch } from 'react-router-dom';
 
 import { createGenerateClassName, StylesProvider } from '@material-ui/core/styles';
 
-import Landing from './components/Landing';
-import Pricing from './components/Pricing';
+import Index from './components/Home';
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: 'ma',
+  productionPrefix: 'ab',
 });
 
 export default (props: { history: History }) => {
@@ -18,8 +17,7 @@ export default (props: { history: History }) => {
       <StylesProvider generateClassName={generateClassName}>
         <Router history={props.history}>
           <Switch>
-            <Route exact path="/pricing" component={Pricing} />
-            <Route path="/" component={Landing} />
+            <Route path="/" component={Index} />
           </Switch>
         </Router>
       </StylesProvider>

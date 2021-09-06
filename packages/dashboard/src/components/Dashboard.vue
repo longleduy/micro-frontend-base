@@ -208,7 +208,7 @@
             <template #header> Logo </template>
             <template #body="slotProps">
               <img
-                :src="'assets/layout/images/product/' + slotProps.data.image"
+                :src="'images/layout/images/product/' + slotProps.data.image"
                 :alt="slotProps.data.image"
                 width="50"
               />

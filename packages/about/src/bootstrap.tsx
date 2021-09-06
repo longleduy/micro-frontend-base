@@ -5,7 +5,6 @@ import ReactDOM, { Container } from 'react-dom';
 
 import App from './App';
 
-// Mount function to start up the app
 const mount = (
   el: Container,
   option: { onNavigate?: LocationListener; defaultHistory?: History; initialPath?: string },
@@ -32,16 +31,12 @@ const mount = (
   };
 };
 
-// If we are in development and in isolation,
-// call mount immediately
 if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#_marketing-dev-root');
+  const devRoot = document.querySelector('#_about-dev-root');
 
   if (devRoot) {
     mount(devRoot, { defaultHistory: createBrowserHistory() });
   }
 }
 
-// We are running through container
-// and we should export the mount function
 export { mount };
