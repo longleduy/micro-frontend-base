@@ -8,6 +8,7 @@ const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
 const domain = process.env.PRODUCTION_DOMAIN;
+const authDomain = process.env.AUTH_PRODUCTION_DOMAIN;
 const name = 'container';
 const outPath = path.join(process.cwd(), `../../build/${name}/latest`);
 const prodConfig = {
@@ -40,7 +41,7 @@ const prodConfig = {
       name,
       remotes: {
         about: `about@${domain}/about/latest/remoteEntry.js`,
-        auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        auth: `auth@${authDomain}/auth/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
