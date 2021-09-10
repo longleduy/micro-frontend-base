@@ -25,7 +25,7 @@ const prodConfig = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: `/${name}/latest/public/images`,
+              publicPath: `${authDomain}/${name}/latest/public/images`,
               outputPath: '/public/images',
             },
           },
