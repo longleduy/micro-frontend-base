@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     position: 'absolute',
-    background: 'transparent',
+    background: 'transparent !important',
   },
   appLogo: {
     width: '150px',

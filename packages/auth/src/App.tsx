@@ -19,10 +19,10 @@ export default (props: { history: History; onSignIn: any }) => {
         <Router history={props.history}>
           <Switch>
             <Route path="/auth/signin">
-              <Signin onSignIn={props.onSignIn} />
+              <Signin />
             </Route>
             <Route path="/auth/signup">
-              <Signup onSignIn={props.onSignIn} />
+              <Signup />
             </Route>
           </Switch>
         </Router>
