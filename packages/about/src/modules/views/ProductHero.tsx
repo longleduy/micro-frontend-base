@@ -47,7 +47,7 @@ function ProductHero(props: any) {
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         Enjoy great experiences
       </Typography>
-      <Link to={'/auth/signup'} className={classes.linkButton}>
+      <Link to={'/auth/signin'} className={classes.linkButton}>
         <Button color="secondary" variant="contained" size="large" className={classes.button}>
           Join Us
         </Button>

@@ -14,6 +14,22 @@ const devConfig = {
     port: 8082,
     historyApiFallback: true,
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: 'http://localhost:8082/public/images',
+            },
+          },
+        ],
+      },
+    ],
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'auth',
