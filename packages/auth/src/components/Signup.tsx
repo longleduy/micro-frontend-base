@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide(props: { onSignIn: any }) {
   const classes = useStyles();
 
   return (
@@ -73,7 +73,6 @@ export default function SignInSide() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -97,7 +96,6 @@ export default function SignInSide() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -126,7 +124,13 @@ export default function SignInSide() {
                   autoComplete="current-password"
                 />
               </Grid>
-              <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={props.onSignIn}>
                 Sign Up
               </Button>
               <Grid container>
