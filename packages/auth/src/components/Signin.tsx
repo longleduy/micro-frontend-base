@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide(props: { onSignIn: any }) {
   const classes = useStyles();
 
   return (
@@ -74,7 +74,6 @@ export default function SignInSide() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
             />
             <TextField
               variant="outlined"
@@ -88,7 +87,13 @@ export default function SignInSide() {
               autoComplete="current-password"
             />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={props.onSignIn}>
               Sign In
             </Button>
             <Grid container>

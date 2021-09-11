@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
@@ -25,9 +26,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     background: 'transparent !important',
   },
+  appBarSigined: {
+    backgroundColor: '#3c4b64',
+  },
   appLogo: {
     width: '150px',
-    marginTop: '10px',
+    marginTop: '5px',
+    marginBottom: '5px',
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -70,13 +75,23 @@ export default function Header(props: { isSignedIn: any; onSignOut: any }) {
 
   return (
     <React.Fragment>
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+      <AppBar
+        position="static"
+        color="default"
+        elevation={0}
+        className={props.isSignedIn ? classes.appBarSigined : classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap component={RouterLink} to="/" style={{ flexGrow: 1 }}>
             <img src={fabbiLogo} className={classes.appLogo} />
           </Typography>
-          <FacebookIcon style={{ fontSize: 40, color: 'white', marginRight: '15px' }} />
-          <GitHubIcon style={{ fontSize: 33, color: 'white' }} />
+          {!props.isSignedIn ? (
+            <Fragment>
+              <FacebookIcon style={{ fontSize: 40, color: 'white', marginRight: '15px' }} />
+              <GitHubIcon style={{ fontSize: 33, color: 'white' }} />
+            </Fragment>
+          ) : (
+            <ExitToAppIcon style={{ fontSize: 35, color: 'white', marginRight: '15px' }} onClick={onClick} />
+          )}
         </Toolbar>
       </AppBar>
     </React.Fragment>
